@@ -24,7 +24,7 @@ angular.module('LunchCheck', [])
       if(dishes === "") {
         return 0;
       }
-      
+
       dishes = dishes.split(',');
       console.log(dishes);
       return dishes.length;
@@ -38,7 +38,7 @@ angular.module('LunchCheck', [])
       } else if (numItems <= 3) {
         return "Enjoy!";
 
-      } else if (numItems > 4) {
+      } else {
         return "TOO MUCH!";
       }
     }
