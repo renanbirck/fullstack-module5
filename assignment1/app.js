@@ -6,13 +6,34 @@ angular.module('LunchCheck', [])
 .controller('LunchCheckController', function ($scope) {
     // $scope.message = "Angular is up";
 
+    $scope.checkIfTooMuch = function () {
+      $scope.message = $scope.getMessageForLunchItems($scope.countLunchItems());
+
+    }
+
     $scope.countLunchItems = function() {
-      return 0;
+
+      var dishes = $scope.dishes;
+      console.log(dishes)
+      if(dishes === undefined || dishes === null) {
+        return 0;
+      }
+
+      dishes = dishes + ''; // force dishes into a string
+
+      if(dishes === "") {
+        return 0;
+      }
+      
+      dishes = dishes.split(',');
+      console.log(dishes);
+      return dishes.length;
+
     }
 
     $scope.getMessageForLunchItems = function(numItems) {
       if(numItems == 0) {
-        return "Empty";
+        return "Please enter data first";
 
       } else if (numItems <= 3) {
         return "Enjoy!";
@@ -21,7 +42,8 @@ angular.module('LunchCheck', [])
         return "TOO MUCH!";
       }
     }
-    $scope.message = $scope.getMessageForLunchItems($scope.countLunchItems());
+
+
 
 });
 
