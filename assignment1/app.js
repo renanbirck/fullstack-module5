@@ -10,23 +10,16 @@ LunchCheckController.$inject = ['$scope']
         $scope.dishes = ""
 
         $scope.checkIfTooMuch = function () {
-          $scope.message = $scope.getMessageForLunchItems($scope.countLunchItems());
+            var dishes = $scope.dishes.split(',');
+            var message = "";
+
+            if(dishes[0] == "") message = "Please enter data first";
+            else if(dishes.length <= 1 && dishes.length <= 3) message = "Enjoy!"
+            else message = "TOO MUCH!";
+
+            $scope.message = message;
         }
-        $scope.countLunchItems = function() {
-          var dishes = $scope.dishes;
-          dishes = dishes.split(',');
-          console.log(dishes);
-          return dishes.length;
-        }
-        $scope.getMessageForLunchItems = function(numItems) {
-          if(numItems == 0) {
-            return "Please enter data first";
-          } else if (numItems <= 3) {
-            return "Enjoy!";
-          } else 
-            return "TOO MUCH!";
-            
-        }
+
   }
 
 })();
